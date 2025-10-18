@@ -3,13 +3,13 @@ import kotlin.collections.MutableList
 
 
 class Cinema() {
-    val rows: Int = enterStringValues("Enter the number of rows:")
-    val rowSeats: Int = enterStringValues("Enter the number of seats in each row:")
+    private val rows: Int = enterStringValues("Enter the number of rows:")
+    private val rowSeats: Int = enterStringValues("Enter the number of seats in each row:")
 
-    val cinemaSeats: List<MutableList<Char>> = getCinemaSeatsData()
-    val totalSeatsQuantity: Int = rows * rowSeats
+    private val cinemaSeats: List<MutableList<Char>> = getCinemaSeatsData()
+    private val totalSeatsQuantity: Int = rows * rowSeats
 
-    fun enterStringValues(enteringString: String): Int {
+    private fun enterStringValues(enteringString: String): Int {
         println(enteringString)
         print("> ")
 
@@ -19,13 +19,13 @@ class Cinema() {
         return enteredStringValue
     }
 
-    fun getCinemaSeatsData(): List<MutableList<Char>> {
+    private fun getCinemaSeatsData(): List<MutableList<Char>> {
         val cinemaSeatsData = List(rows) { MutableList(rowSeats) { 'S' } }
 
         return cinemaSeatsData
     }
 
-    fun buyCinemaTicket() {
+    private fun buyCinemaTicket() {
         val chosenRowNumber = enterStringValues("Enter a row number:")
         val chosenSeatNumber = enterStringValues("Enter a seat number in that row:")
 
@@ -51,11 +51,11 @@ class Cinema() {
         changeCinemaSeatStatus(chosenRowNumber, chosenSeatNumber)
     }
 
-    fun changeCinemaSeatStatus(chosenRowNumber: Int, chosenSeatNumber: Int) {
+    private fun changeCinemaSeatStatus(chosenRowNumber: Int, chosenSeatNumber: Int) {
         cinemaSeats[chosenRowNumber - 1][chosenSeatNumber - 1] = 'B'
     }
 
-    fun cinemaTicketPriceCalculation(chosenRowNumber: Int): Int {
+    private fun cinemaTicketPriceCalculation(chosenRowNumber: Int): Int {
         val frontRows = rows / 2
 
         val cinemaTicketPrice = if (totalSeatsQuantity <= 60) { 10 } else { if (chosenRowNumber <= frontRows) 10 else 8 }
@@ -63,7 +63,7 @@ class Cinema() {
         return cinemaTicketPrice
     }
 
-    fun cinemaSeatsRepresentation() {
+    private fun cinemaSeatsRepresentation() {
         println("Cinema:")
 
         print("  ")
@@ -86,7 +86,7 @@ class Cinema() {
         println("")
     }
 
-    fun cinemaIncomeCalculation(): Int {
+    private fun cinemaIncomeCalculation(): Int {
         val frontRows = rows / 2
         val endRows = rows - frontRows
 
@@ -104,7 +104,7 @@ class Cinema() {
         return calculatedCinemaIncome
     }
 
-    fun showCinemaStatistics() {
+    private fun showCinemaStatistics() {
         var purchasedTickets = 0
         var currentIncome = 0
 
